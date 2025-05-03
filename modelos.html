@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotorStore - Modelos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'slide-in': 'slideIn 0.5s ease-out',
+                        'slide-out': 'slideOut 0.5s ease-in'
+                    },
+                    keyframes: {
+                        slideIn: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(0)' }
+                        },
+                        slideOut: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(100%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900">
+    <!-- Navbar -->
+    <nav class="py-6 relative bg-white dark:bg-gray-800 w-auto transition-colors duration-300">
+        <div class="container mx-auto flex px-8 lg:p-0">
+            <div class="flex flex-grow text-black dark:text-white text-2xl font-bold lg:ml-0 items-center px-2 transition-colors duration-300">
+                <img src="https://img.icons8.com/ios-filled/50/motorcycle.png" class="h-10 w-10 mr-2 text-black dark:invert">
+                MotorStore
+            </div>  
+            <div class="lg:hidden transition duration-1000 ease-in-out menu-button mt-2" onclick="openMenu();">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black dark:text-white">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                </svg>
+            </div>
+            <div id="menu" class="lg:flex justify-between flex-grow hidden absolute top-full lg:relative w-full left-0 lg:w-auto py-16 lg:py-0 px-8 items-center bg-white dark:bg-gray-800 border border-black dark:border-gray-600 border-2 lg:border-none lg:h-auto h-screen transition-colors duration-300">
+                <div class="flex flex-col lg:flex-row px-2 items-center">
+                    <a href="index.html" class="text-black dark:text-white lg:mr-5 mb-8 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-300">Inicio</a>
+                    <a href="modelos.html" class="text-black dark:text-white lg:mr-5 mb-8 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-300">Modelos</a>
+                    <a href="equipo.html" class="text-black dark:text-white lg:mr-5 mb-8 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-300">Equipo</a>
+                    <a href="tiendas.html" class="text-black dark:text-white lg:mr-5 mb-8 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-300">Tiendas</a>
+                </div> 
+                <div class="flex flex-col lg:flex-row text-center py-4 lg:p-0 px-2">
+                    <button id="darkModeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white mr-4 mb-8 lg:mb-0">
+                        <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                        <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                    </button>
+                    <a href="#" class="text-black dark:text-white border border-black dark:border-white py-2 px-4 rounded-md hover:text-white transition lg:mr-4 mb-8 lg:mb-0 hover:bg-blue-700 hover:border-blue-700 transition duration-500 ease-in-out">Iniciar sesión</a>
+                    <a href="#" class="text-white bg-blue-500 broder border-blue-500 py-2 px-4 rounded-md hover:bg-blue-700 hover:border-blue-700 transition duration-500 ease-in-out mb-8 lg:mb-0">Registrarte</a>
+                </div>
+            </div>  
+        </div>
+    </nav>
+
+    <!-- Contenido específico de cada página -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- MODELOS.HTML -->
+        <h1 class="text-3xl font-bold text-black dark:text-white mb-6">Nuestros Modelos</h1>
+        
+        <!-- Filtros -->
+        <div class="mb-8 flex flex-col md:flex-row gap-4">
+            <select class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg px-4 py-2 focus:ring-blue-500 focus:border-blue-500">
+                <option selected>Todas las categorías</option>
+                <option>Deportivas</option>
+                <option>Naked</option>
+                <option>Custom</option>
+                <option>Adventure</option>
+                <option>Scooters</option>
+            </select>
+            
+            <select class="bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg px-4 py-2 focus:ring-blue-500 focus:border-blue-500">
+                <option selected>Todos los precios</option>
+                <option>Menos de $5,000</option>
+                <option>$5,000 - $10,000</option>
+                <option>$10,000 - $15,000</option>
+                <option>Más de $15,000</option>
+            </select>
+            
+            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition duration-300">
+                Filtrar
+            </button>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 - Yamaha R1 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Yamaha R1" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">NUEVO</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Yamaha YZF-R1</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">La máxima expresión de tecnología en motos deportivas.</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">$18,999</span>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="flex items-center">
+                            <ion-icon name="speedometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">200 mph</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="flash-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">200 HP</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="battery-full-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">998cc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Azul/Blanco</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                        <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                        Comprar ahora
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Card 2 - Harley Davidson Fat Boy -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Harley Davidson Fat Boy" class="w-full h-48 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Harley Davidson Fat Boy</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">El ícono de las motos custom con un estilo inconfundible.</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">$21,499</span>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="flex items-center">
+                            <ion-icon name="speedometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">120 mph</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="flash-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">86 HP</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="battery-full-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">1868cc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Negro mate</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                        <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                        Comprar ahora
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Card 3 - Ducati Monster -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ducati Monster" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">OFERTA</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Ducati Monster 1200</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Naked bike con el ADN deportivo de Ducati.</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">$15,999</span>
+                        <span class="text-sm text-green-500 dark:text-green-400">Últimas unidades</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="flex items-center">
+                            <ion-icon name="speedometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">160 mph</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="flash-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">145 HP</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="battery-full-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">1200cc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Rojo Ducati</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                        <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                        Comprar ahora
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Card 4 - BMW R 1250 GS -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1558980394-4c7c9299fe96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="BMW R 1250 GS" class="w-full h-48 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">BMW R 1250 GS</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">La aventura no tiene límites con esta máquina todoterreno.</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">$17,799</span>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="flex items-center">
+                            <ion-icon name="speedometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">140 mph</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="flash-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">136 HP</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="battery-full-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">1254cc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Azul/Blanco</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                        <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                        Comprar ahora
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Card 5 - Honda CBR500R -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="relative">
+                    <img src="https://quickbutik.imgix.net/9603t/products/63d16ce64a1da.jpeg" alt="Honda CBR500R" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">POPULAR</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Honda CBR500R</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Deportividad y eficiencia en una moto accesible.</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">$6,999</span>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="flex items-center">
+                            <ion-icon name="speedometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">112 mph</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="flash-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">47 HP</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="battery-full-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">471cc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Rojo/Blanco</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                        <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                        Comprar ahora
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Card 6 - Vespa Primavera -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1558981852-426c6c22a060?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80" alt="Vespa Primavera" class="w-full h-48 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Vespa Primavera</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Elegancia italiana para moverse por la ciudad.</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">$4,299</span>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="flex items-center">
+                            <ion-icon name="speedometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">60 mph</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="flash-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">12.9 HP</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="battery-full-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">150cc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Verde menta</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                        <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                        Comprar ahora
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="relative">
+                    <img src="https://m.media-amazon.com/images/I/81LVrV4WqUL._AC_SL1500_.jpg" alt="Kawasaki Ninja H2" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">EXCLUSIVO</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Kawasaki Ninja H2</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">La moto de producción con compresor mecánico más avanzada del mundo.</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">$32,000</span>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">Bajo pedido</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="flex items-center">
+                            <ion-icon name="speedometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">209 mph</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="flash-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">231 HP</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="battery-full-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">998cc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Verde Kawasaki</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                        <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                        Comprar ahora
+                    </button>
+                </div>
+            </div>
+    
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="relative">
+                    <img src="https://www.motofichas.com/images/phocagallery/Honda/cbr500r-2024/11-honda-cbr500r-2024-estudio-negro-01.jpg" alt="Triumph Bonneville T120" class="w-full h-48 object-cover">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Triumph Bonneville T120</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Elegancia británica con tecnología moderna.</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">$12,500</span>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="flex items-center">
+                            <ion-icon name="speedometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">120 mph</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="flash-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">80 HP</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="battery-full-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">1200cc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Negro/Bronce</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                        <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                        Comprar ahora
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="relative">
+                    <img src="https://socopur.com.pe/wp-content/uploads/2024/09/WhatsApp-Image-2024-09-10-at-11.46.04-AM.jpeg" alt="KTM 390 Adventure" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full">AVENTURA</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">KTM 390 Adventure</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Capacidad off-road en un formato accesible.</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">$7,299</span>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="flex items-center">
+                            <ion-icon name="speedometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">100 mph</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="flash-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">44 HP</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="battery-full-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">373cc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Naranja KTM</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                        <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                        Comprar ahora
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="relative">
+                    <img src="https://ultimatemotorcycling.com/wp-content/uploads/2022/03/2021-indian-scout-bobber-sixty-review-urban-crusier-motorcycle-12.jpg" alt="Indian Scout Bobber" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-full">ESTILO</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Indian Scout Bobber</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Actitud rebelde con herencia clásica.</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">$11,999</span>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="flex items-center">
+                            <ion-icon name="speedometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">110 mph</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="flash-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">100 HP</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="battery-full-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">1133cc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Negro mate</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                        <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                        Comprar ahora
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="relative">
+                    <img src="https://wlassets.aprilia.com/wlassets/aprilia/master/Range/RS660/family_page/2025/wall-image/Aprilia_RS660-Factory_tab_900x675_Intera_1/original/Aprilia_RS660-Factory_tab_900x675_Intera_1.jpg?1740480306732" alt="Aprilia RS 660" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">DEPORTIVA</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Aprilia RS 660</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Tecnología de carreras en un formato accesible.</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">$10,999</span>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="flex items-center">
+                            <ion-icon name="speedometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">145 mph</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="flash-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">100 HP</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="battery-full-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">659cc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Negro/Rojo</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                        <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                        Comprar ahora
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                <div class="relative">
+                    <img src="https://frasermotorcycles.com.au/cdn/shop/files/2024-Honda-Goldwing-Tourer-Green_03bcb1a7-550a-4a46-964e-30fb93a47de5.jpg?v=1719960653" alt="Honda Gold Wing" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">TOURING</span>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Honda Gold Wing</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">El máximo confort para viajes largos.</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-bold text-gray-900 dark:text-white">$23,900</span>
+                        <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="flex items-center">
+                            <ion-icon name="speedometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">125 mph</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="flash-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">126 HP</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="battery-full-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">1833cc</span>
+                        </div>
+                        <div class="flex items-center">
+                            <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">Rojo/Blanco</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                        <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                        Comprar ahora
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <!-- Paginación -->
+        <div class="mt-12 flex justify-center">
+            <nav class="flex items-center space-x-2">
+                <a href="#" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white p-2 inline-flex items-center gap-2 rounded-md">
+                    <span aria-hidden="true">«</span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+                <a href="#" class="w-10 h-10 bg-blue-500 text-white p-2 inline-flex items-center text-sm font-medium rounded-full" aria-current="page">1</a>
+                <a href="#" class="w-10 h-10 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white p-2 inline-flex items-center text-sm font-medium rounded-full">2</a>
+                <a href="#" class="w-10 h-10 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white p-2 inline-flex items-center text-sm font-medium rounded-full">3</a>
+                <a href="#" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white p-2 inline-flex items-center gap-2 rounded-md">
+                    <span class="sr-only">Siguiente</span>
+                    <span aria-hidden="true">»</span>
+                </a>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 py-8 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://www.facebook.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-blue-500">
+                    <ion-icon name="logo-facebook" class="text-2xl"></ion-icon>
+                </a>
+                <a href="https://www.twitter.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-blue-400">
+                    <ion-icon name="logo-twitter" class="text-2xl"></ion-icon>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-pink-600">
+                    <ion-icon name="logo-instagram" class="text-2xl"></ion-icon>
+                </a>
+            </div>
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="politica-privacidad.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Política de Privacidad</a>
+                <a href="terminos.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Términos de Servicio</a>
+                <a href="mapa-sitio.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Mapa del Sitio</a>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300">&copy; 2024 MotorStore. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Modo oscuro
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            
+            if (html.classList.contains('dark')) {
+                localStorage.setItem('darkMode', 'enabled');
+                document.getElementById('sunIcon').classList.add('hidden');
+                document.getElementById('moonIcon').classList.remove('hidden');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                document.getElementById('sunIcon').classList.remove('hidden');
+                document.getElementById('moonIcon').classList.add('hidden');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const darkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
+            if (darkModeEnabled) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('sunIcon').classList.add('hidden');
+                document.getElementById('moonIcon').classList.remove('hidden');
+            }
+            
+            document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
+        });
+
+        // Menú móvil
+        function openMenu() {
+            const menu = document.getElementById("menu");
+
+            if (menu.classList.contains("hidden")) {
+                menu.classList.remove("hidden");
+                menu.classList.add("z-40", "fixed", "bg-white", "dark:bg-gray-800", "w-full", "top-full", "transition-transform", "duration-700", "transform", "animate-slide-in");
+                document.body.classList.add("overflow-hidden");
+            } else {
+                menu.classList.add("animate-slide-out");
+                menu.classList.remove("animate-slide-in");
+
+                menu.addEventListener("animationend", () => {
+                    menu.classList.add("hidden");
+                    menu.classList.remove("z-40", "fixed", "animate-slide-out");
+                    document.body.classList.remove("overflow-hidden");
+                }, { once: true });
+            }
+        }
+    </script>
+</body>
+</html>

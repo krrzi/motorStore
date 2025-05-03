@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotorStore - Equipo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'slide-in': 'slideIn 0.5s ease-out',
+                        'slide-out': 'slideOut 0.5s ease-in'
+                    },
+                    keyframes: {
+                        slideIn: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(0)' }
+                        },
+                        slideOut: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(100%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-900">
+    <!-- Navbar -->
+    <nav class="py-6 relative bg-white dark:bg-gray-800 w-auto transition-colors duration-300">
+        <div class="container mx-auto flex px-8 lg:p-0">
+            <div class="flex flex-grow text-black dark:text-white text-2xl font-bold lg:ml-0 items-center px-2 transition-colors duration-300">
+                <img src="https://img.icons8.com/ios-filled/50/motorcycle.png" class="h-10 w-10 mr-2 text-black dark:invert">
+                MotorStore
+            </div>  
+            <div class="lg:hidden transition duration-1000 ease-in-out menu-button mt-2" onclick="openMenu();">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black dark:text-white">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                </svg>
+            </div>
+            <div id="menu" class="lg:flex justify-between flex-grow hidden absolute top-full lg:relative w-full left-0 lg:w-auto py-16 lg:py-0 px-8 items-center bg-white dark:bg-gray-800 border border-black dark:border-gray-600 border-2 lg:border-none lg:h-auto h-screen transition-colors duration-300">
+                <div class="flex flex-col lg:flex-row px-2 items-center">
+                    <a href="index.html" class="text-black dark:text-white lg:mr-5 mb-8 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-300">Inicio</a>
+                    <a href="modelos.html" class="text-black dark:text-white lg:mr-5 mb-8 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-300">Modelos</a>
+                    <a href="equipo.html" class="text-black dark:text-white lg:mr-5 mb-8 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-300">Equipo</a>
+                    <a href="tiendas.html" class="text-black dark:text-white lg:mr-5 mb-8 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-300">Tiendas</a>
+                </div> 
+                <div class="flex flex-col lg:flex-row text-center py-4 lg:p-0 px-2">
+                    <button id="darkModeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white mr-4 mb-8 lg:mb-0">
+                        <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                        <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                    </button>
+                    <a href="#" class="text-black dark:text-white border border-black dark:border-white py-2 px-4 rounded-md hover:text-white transition lg:mr-4 mb-8 lg:mb-0 hover:bg-blue-700 hover:border-blue-700 transition duration-500 ease-in-out">Iniciar sesión</a>
+                    <a href="#" class="text-white bg-blue-500 broder border-blue-500 py-2 px-4 rounded-md hover:bg-blue-700 hover:border-blue-700 transition duration-500 ease-in-out mb-8 lg:mb-0">Registrarte</a>
+                </div>
+            </div>  
+        </div>
+    </nav>
+
+    <!-- Contenido específico de cada página -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- EQUIPO.HTML -->
+        <h1 class="text-3xl font-bold text-black dark:text-white mb-6">Equipo y Accesorios</h1>
+        
+        <!-- Sección Cascos -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-black dark:text-white">Cascos</h2>
+                <a href="#" class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium">Ver todos</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Casco 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://m.media-amazon.com/images/I/81Cio6sb2zL._AC_SL1500_.jpg" alt="Shoei RF-1400" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">NUEVO</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Shoei RF-1400</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Casco integral con máxima protección y aerodinámica.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$699.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">ECE 22.06</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="weight-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">1.45 kg</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">5 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro mate</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Casco 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://m.media-amazon.com/images/I/41aFteTq68L._BO30,255,255,255_UF900,850_SR1910,1000,0,C_QL100_.jpg" alt="AGV K6" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">POPULAR</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">AGV K6</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Ligero y aerodinámico, usado por pilotos profesionales.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$549.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">ECE 22.05</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="weight-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">1.35 kg</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">6 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Blanco/Rojo</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Casco 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://www.araihelmet.eu/storage/uploads/carousel-item/362/resize.jpg?v=2025-01-21-112129" alt="Arai RX-7V" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">OFERTA</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Arai RX-7V</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Tecnología de competición para uso en carretera.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$799.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Últimas unidades</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">SNELL M2020</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="weight-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">1.55 kg</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">5 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro/Brillante</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección Guantes -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-black dark:text-white">Guantes</h2>
+                <a href="#" class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium">Ver todos</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Guante 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://cdn2.louis.de/dynamic/articles/o_resize,w_1800,h_1800,m_limit,c_fff::o_extension,e_webp/af.d0.2f.H1alpinestarsGPProR3schwarz20161734019.JPG" alt="Alpinestars GP Pro R3" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Alpinestars GP Pro R3</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Guantes de competición con protección de carbono.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$249.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Nivel 2</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="thermometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Todo tiempo</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">6 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro/Rojo</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Guante 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://cdn.store-assets.com/s/263899/i/75408395.png?width=1024" alt="Dainese Full Metal 6" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full">BEST SELLER</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Dainese Full Metal 6</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Protección superior con nudilleras de metal.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$299.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Nivel 1</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="thermometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Verano</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">5 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro/Blanco</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Guante 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://m.media-amazon.com/images/I/71DbWo1ZUZL.jpg" alt="Rev'it Sand 3" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Rev'it Sand 3</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Guantes todoterreno con protección reforzada.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$179.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Nivel 1</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="thermometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Invierno</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">7 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro/Gris</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección Botas -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-black dark:text-white">Botas</h2>
+                <a href="#" class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium">Ver todos</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Bota 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://i.ebayimg.com/images/g/XfsAAOSw5R9kr8QO/s-l1200.jpg" alt="TCX Hero WP" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">OFERTA</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">TCX Hero WP</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Botas urbanas con protección y waterproof.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$229.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">CE Nivel 1</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="water-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Impermeable</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">8 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Bota 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://socopur.com.pe/wp-content/uploads/2020/02/2223117-1032-min-1.jpg" alt="Alpinestars SMX-6" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Alpinestars SMX-6</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Botas deportivas con tobilleras reforzadas.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$349.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">CE Nivel 2</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="water-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Resistente</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">7 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro/Blanco</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Bota 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://cdn2.louis.de/dynamic/articles/o_resize,w_1800,h_1800,m_limit,c_fff::o_extension,e_webp/14.d7.88.D1DaineseTorque3OutLadyschwarzanthrazit21910633020.JPG" alt="Dainese Torque D1" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">NUEVO</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Dainese Torque D1</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Botas de competición con máxima protección.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$499.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">CE Nivel 2</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="water-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Resistente</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">6 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro/Rojo</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección Chaquetas -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-black dark:text-white">Chaquetas</h2>
+                <a href="#" class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium">Ver todos</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Chaqueta 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://revitsport.com/cdn/shop/files/091224092933_83598068083066188.jpg?v=1745549097" alt="Rev'it Tornado 3" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Rev'it Tornado 3</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Chaqueta de verano con excelente ventilación.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$299.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Protección AA</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="thermometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Verano</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">5 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro/Azul</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Chaqueta 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://www.tradeinn.com/f/13646/136462309/dainese-chaqueta-mugello.webp" alt="Dainese Mugello R" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">POPULAR</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Dainese Mugello R</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Chaqueta de cuero para uso deportivo.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$599.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Protección AAA</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="thermometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Todo tiempo</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">6 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro/Rojo</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Chaqueta 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://socopur.com.pe/wp-content/uploads/2023/07/3207521-7109.jpg" alt="Alpinestars Andes V3" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Alpinestars Andes V3</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Chaqueta todoterreno con protección D3O.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$449.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Protección AA</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="thermometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Invierno</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">7 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro/Gris</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección Pantalones -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-black dark:text-white">Pantalones</h2>
+                <a href="#" class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium">Ver todos</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Pantalón 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://revitsport.com/cdn/shop/files/091224094839_83598068083065352.jpg?v=1736321188" alt="Rev'it Sand 3" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Rev'it Sand 3</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Pantalones todoterreno con protección en rodillas.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$249.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Protección A</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="thermometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Todo tiempo</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">6 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro/Beige</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Pantalón 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://www.cyclegear.com/_a/product_images/1439/0475/dainese_new_drake_air_textile_pants.jpg" alt="Dainese New Drake Air" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">OFERTA</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Dainese New Drake Air</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Pantalones urbanos con ventilación y protección.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$199.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Protección A</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="thermometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Verano</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">7 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Pantalón 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://es.alpinestars.com/cdn/shop/files/3321125-89-of-acteon-pants_ed306723-17d3-4349-8e8b-be8de13e3acc.jpg?v=1744442461" alt="Alpinestars Cargo" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Alpinestars Cargo</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Pantalones de aventura con múltiples bolsillos.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$279.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="shield-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Protección AA</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="thermometer-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Todo tiempo</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="options-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">6 tallas</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro/Gris</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección Accesorios -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-black dark:text-white">Accesorios</h2>
+                <a href="#" class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 text-sm font-medium">Ver todos</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Accesorio 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://cardosystems.com/cdn/shop/files/PacktalkBold_01.png?v=1705243318&width=2000" alt="Cardo Packtalk Bold" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Cardo Packtalk Bold</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Sistema de comunicación para cascos.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$299.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="volume-high-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">JBL</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="wifi-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Mesh</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="time-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">13h batería</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="people-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">15 usuarios</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Accesorio 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://static.gopro.com/assets/blta2b8522e5372af40/blt987260e1b132a2ac/647790db24b324e545daec71/hp-q2-H11mini-refresh-SA-gallery1-1920-2x.png?width=3840&quality=80&auto=webp&disable=upscale" alt="GoPro Hero 11" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">POPULAR</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">GoPro Hero 11</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Cámara de acción para grabar tus rutas.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$399.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="videocam-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">5.3K</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="battery-full-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">2h grabación</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="water-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">10m waterproof</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Accesorio 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="https://www.oxfordproducts.com/graphics_cache/9/1/1783728-ol456-2--.jpg" alt="Oxford Aqua T-25" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Oxford Aqua T-25</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Funda impermeable para moto.</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-lg font-bold text-gray-900 dark:text-white">$59.99</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Disponible</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="flex items-center">
+                                <ion-icon name="water-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">100% waterproof</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="lock-closed-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Antirrobo</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="resize-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Talla única</span>
+                            </div>
+                            <div class="flex items-center">
+                                <ion-icon name="color-palette-outline" class="text-gray-500 dark:text-gray-400 mr-1"></ion-icon>
+                                <span class="text-sm text-gray-600 dark:text-gray-300">Negro</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md transition duration-300 flex items-center justify-center">
+                            <ion-icon name="cart-outline" class="mr-2"></ion-icon>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 py-8 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://www.facebook.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-blue-500">
+                    <ion-icon name="logo-facebook" class="text-2xl"></ion-icon>
+                </a>
+                <a href="https://www.twitter.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-blue-400">
+                    <ion-icon name="logo-twitter" class="text-2xl"></ion-icon>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-pink-600">
+                    <ion-icon name="logo-instagram" class="text-2xl"></ion-icon>
+                </a>
+            </div>
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="politica-privacidad.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Política de Privacidad</a>
+                <a href="terminos.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Términos de Servicio</a>
+                <a href="mapa-sitio.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Mapa del Sitio</a>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300">&copy; 2024 MotorStore. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Modo oscuro
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            
+            if (html.classList.contains('dark')) {
+                localStorage.setItem('darkMode', 'enabled');
+                document.getElementById('sunIcon').classList.add('hidden');
+                document.getElementById('moonIcon').classList.remove('hidden');
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                document.getElementById('sunIcon').classList.remove('hidden');
+                document.getElementById('moonIcon').classList.add('hidden');
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const darkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
+            if (darkModeEnabled) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('sunIcon').classList.add('hidden');
+                document.getElementById('moonIcon').classList.remove('hidden');
+            }
+            
+            document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
+        });
+
+        // Menú móvil
+        function openMenu() {
+            const menu = document.getElementById("menu");
+
+            if (menu.classList.contains("hidden")) {
+                menu.classList.remove("hidden");
+                menu.classList.add("z-40", "fixed", "bg-white", "dark:bg-gray-800", "w-full", "top-full", "transition-transform", "duration-700", "transform", "animate-slide-in");
+                document.body.classList.add("overflow-hidden");
+            } else {
+                menu.classList.add("animate-slide-out");
+                menu.classList.remove("animate-slide-in");
+
+                menu.addEventListener("animationend", () => {
+                    menu.classList.add("hidden");
+                    menu.classList.remove("z-40", "fixed", "animate-slide-out");
+                    document.body.classList.remove("overflow-hidden");
+                }, { once: true });
+            }
+        }
+    </script>
+</body>
+</html>

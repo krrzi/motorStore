@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            100: '#1E293B',
+                            200: '#1A202C',
+                            300: '#171923',
+                            400: '#2D3748',
+                            500: '#4A5568',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    </style> 
+    <title>Motor Store</title>
+</head>
+<body class="bg-white dark:bg-gray-900 transition-colors duration-300">
+ 
+
+  <nav class="py-6 relative bg-white dark:bg-gray-800 w-auto transition-colors duration-300">
+    <div class="container mx-auto flex px-8 lg:p-0">
+        <div class="flex flex-grow text-black dark:text-white text-2xl font-bold lg:ml-0 items-center px-2 transition-colors duration-300">
+            <img src="https://img.icons8.com/ios-filled/50/motorcycle.png" class="h-10 w-10 mr-2 text-black dark:invert">
+            MotorStore
+        </div>  
+        <div class="lg:hidden transition duration-1000 ease-in-out menu-button mt-2" onclick="openMenu();">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black dark:text-white">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+            </svg>
+        </div>
+       <div id="menu" class="lg:flex justify-between flex-grow hidden absolute top-full lg:relative w-full left-0 lg:w-auto py-16 lg:py-0 px-8 items-center bg-white dark:bg-gray-800 border border-black dark:border-gray-600 border-2 lg:border-none lg:h-auto h-screen transition-colors duration-300">
+            <div class="flex flex-col lg:flex-row px-2 items-center">
+              <a href="index.html" class="text-black dark:text-white lg:mr-5 mb-8 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-300">Inicio</a>
+                <a href="modelos.html" class="text-black dark:text-white lg:mr-5 mb-8 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-300">Modelos</a>
+                <a href="equipo.html" class="text-black dark:text-white lg:mr-5 mb-8 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-300">Equipamento</a>
+                
+                <a href="tiendas.html" class="text-black dark:text-white lg:mr-5 mb-8 lg:mb-0 hover:text-gray-800 dark:hover:text-gray-300 transition-colors duration-300">Tiendas</a>
+            </div> 
+            <div class="flex flex-col lg:flex-row text-center py-4 lg:p-0 px-2">
+                <!-- Botón de modo oscuro agregado aquí -->
+                <button id="darkModeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white mr-4 mb-8 lg:mb-0">
+                  <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                  <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                  </svg>
+                </button>
+                <a href="#" class="text-black dark:text-white border border-black dark:border-white py-2 px-4 rounded-md hover:text-white transition lg:mr-4 mb-8 lg:mb-0 hover:bg-blue-700 hover:border-blue-700 transition duration-500 ease-in-out">Iniciar sesión</a>
+                <a href="#" class="text-white bg-blue-500 broder border-blue-500 py-2 px-4 rounded-md hover:bg-blue-700 hover:border-blue-700 transition duration-500 ease-in-out mb-8 lg:mb-0">Registrarte</a>
+            </div>
+       </div>  
+    </div>
+</nav>
+  <div>
+    <div class="flex items-center justify-center w-auto">
+      <figure class="relative transition-opacity duration-500 opacity-100 transition-transform duration-700 transform opacity-100 animate-slide-in" id="contenido1">
+          <img id="image1" class="w-screen h-auto object-contain shadow-xl hover:shadow-2xl transition duration-500 ease-in-out" src="https://www.inchcapemotors.pe/motorrad/site/artic/20210831/imag/foto_0000001920210831093515/WEB_IMP_G_310_1441X536PX.png">
+          <figcaption class="relative lg:-mt-80 text-white font-sans lg:px-20 mt-8 pl-6" style="font-family: Helvetica, Arial, sans-serif;">
+              <div class="h-52 flex flex-col lg:w-80 text-white font-extrabold lg:ml-2">
+                  <h1 class="lg:text-4xl text-xl lg:mb-4 mb-2 w-96">G310 REVOLUTION</h1>
+                  <p class="lg:text-md font-medium w-96 lg:w-auto">Disfruta de promociones especiales en G 310 R y G 310 GS en nuestras sedes de Lima y Piura.</p>
+
+                  <button onclick="window.location.href='modelos.html'"  class="lg:bg-white dark:lg:bg-gray-800 bg-blue-500 lg:text-black dark:lg:text-white text-white hover:bg-blue-700 hover:text-white w-52 transition duration-500 ease-in-out font-bold mt-5 p-4 tracking-tight">CONOCE MAS AQUI</button>
+
+                  <div class="lg:mt-2 mt-6">
+                      <button id="prev" class="my-8 w-16 h-8 min-w-16 min-h-8 hover:text-slate-200 transition duration-500 ease-in-out font-bold text-white bg-zinc-700 hover:bg-zinc-600 ">←</button>
+                      <button id="next" class="my-8 bg-zinc-700 w-16 h-8 min-w-16 min-h-8 hover:bg-zinc-600 hover:text-slate-200 transition duration-500 ease-in-out font-bold text-white">→</button>
+                  </div>
+              </div>
+          </figcaption>
+      </figure>
+      <figure class="relative hidden transition-transform duration-700 transform opacity-100 animate-slide-in" id="contenido2">
+    <img id="image2" class="w-screen h-auto object-contain shadow-xl hover:shadow-2xl transition duration-500 ease-in-out" src="https://www.inchcapemotors.pe/motorrad/site/artic/20230802/imag/foto_0000005620230802214358/banner-1441x536.jpg">
+    <figcaption class="relative lg:-mt-80 text-white font-sans lg:px-20 mt-8 pl-6" style="font-family: Helvetica, Arial, sans-serif;">
+        <div class="h-52 flex flex-col lg:w-80 text-white font-extrabold lg:ml-2">
+            <h1 class="lg:text-4xl text-xl lg:mb-4 mb-2 font-extrabold w-96">LAS MEJORES PROMOCIONES DEL MES</h1>
+            <p class="lg:text-md font-medium w-96 lg:w-auto">Descuentos por dias festivos y ofertas especiales todo el año!</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                <button onclick="window.location.href='modelos.html'" class="lg:bg-white bg-blue-500 lg:text-black text-white hover:bg-blue-700 hover:text-white transition duration-500 ease-in-out font-bold mt-2 lg:mr-6 mr-2 px-8 py-2 lg:text-md text-sm lg:w-48 w-60">COTIZA AQUI</button>
+                <button class="bg-white lg:border-0 border border-black text-black hover:bg-blue-700 hover:text-white w-60 lg:w-72 transition duration-500 ease-in-out hover:border-blue-700 font-bold mt-2 lg:px-8 py-2 text-md lg:ml-12 text-sm lg:text-md">TERMINOS Y CONDICIONES</button>
+            </div>
+
+            <div class="lg:-mt-4 mt-2">
+                <button id="prev2" class="my-8 w-16 h-8 min-w-16 min-h-8 hover:text-slate-200 transition duration-500 ease-in-out font-bold text-white mb-4 bg-zinc-700 hover:bg-zinc-600">←</button>
+                <button id="next2" class="my-8 w-16 h-8 min-w-16 min-h-8 bg-zinc-700 hover:bg-zinc-600 hover:text-slate-200 transition duration-500 ease-in-out font-bold text-white">→</button>
+            </div>
+        </div>
+    </figcaption>
+</figure>
+      <figure class="relative hidden transition-transform duration-700 transform opacity-100 animate-slide-in" id="contenido3">
+        <img id="image3" class="w-screen h-auto object-contain shadow-xl hover:shadow-2xl transition duration-500 ease-in-out" src="https://www.inchcapemotors.pe/motorrad/site/artic/20230206/imag/foto_0000004420230206153234/1441X536.jpg">
+        <figcaption class="relative lg:-mt-80 text-white font-sans lg:px-20 mt-8 pl-6" style="font-family: Helvetica, Arial, sans-serif;">
+            <div class="h-52 flex flex-col lg:w-80 text-white font-extrabold lg:ml-2">
+                <h1 class="lg:text-4xl text-xl lg:mb-4 mb-2 w-96">RESENA DE LA RUTA</h1>
+                <p class="lg:text-md font-medium w-96 lg:w-auto">DESCUBRE NUEVOS PAISAJES A LO LARGO DE TODO EL PERU</p>
+
+                <div class="lg:mt-2">
+                    <button onclick="window.location.href='tiendas.html'"  class="lg:bg-white dark:lg:bg-gray-800 bg-blue-500 lg:text-black dark:lg:text-white text-white hover:bg-blue-700 hover:text-white transition duration-500 ease-in-out font-bold mt-6 mr-6 px-8 py-2 text-md w-72">CONOCE NUEVAS RUTAS</button>
+                </div>
+
+                <div class="mt-9 lg:-mt-1">
+                    <button id="prev3" class="my-8 w-16 h-8 min-w-16 min-h-8 hover:text-slate-200 transition duration-500 ease-in-out font-bold text-white bg-zinc-700 hover:bg-zinc-600">←</button>
+                    <button id="next3" class="my-8 w-16 h-8 min-w-16 min-h-8 hover:text-slate-200 transition duration-500 ease-in-out font-bold text-white bg-zinc-700 hover:bg-zinc-600">→</button>
+                </div>
+            </div>
+        </figcaption>
+    </figure>
+  </div>
+  </div>
+
+
+  <div class="lg:border-0 flex-grow border-t border-2 border-black dark:border-gray-600 lg:mt-40 mt-20 mb-8 transition-colors duration-300"></div>
+  <div id="ContenidoPrincipal" class="bg-white dark:bg-gray-800 flex transition-colors duration-300">
+    <div class="text-black dark:text-white font-bold grid grid-cols-1 justify-items-center items-center lg:grid-cols-4 text-lg mx-16 mt-4 transition-colors duration-300">
+      <div class="mb-8 w-60 lg:ml-16 flex">
+        <img width="24" height="24" src="https://www.svgrepo.com/show/137787/motorcycle.svg" alt="motorcycle" class="dark:invert"/>
+        <a href="modelos.html" class="font-bold ml-2">CONSIGUE TU MOTO</a>
+      </div>
+      <div class="mb-8 w-60 lg:ml-16 flex ">
+        <img width="24" height="24" src="https://img.icons8.com/material-rounded/24/motocross-helmet.png" alt="motocross-helmet" class="dark:invert"/>
+        <a href="equipo.html" class="font-bold ml-2">SOLICITA TU EQUIPO</a>
+      </div>
+      <div class="mb-8 w-60 lg:ml-16 flex ">
+        <img width="24" height="24" src="https://img.icons8.com/external-creatype-glyph-colourcreatype/64/external-dolar-miscellaneous-user-interface-v2-creatype-glyph-colourcreatype.png" alt="external-dolar-miscellaneous-user-interface-v2-creatype-glyph-colourcreatype" class="dark:invert"/>
+        <a href="tiendas.html" class="font-bold ml-4">SERVICIO FINANCIERO</a>
+      </div>
+      <div class="mb-8 w-60 lg:ml-16 flex ">
+        <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/calendar--v1.png" alt="calendar--v1" class="dark:invert"/>
+        <a href="tiendas.html" class="font-bold ml-4">SERVICIO TECNICO</a>
+      </div>          
+    </div>
+  </div>
+  <div class="font-bold text-white mt-6 mb-4 text-sm lg:text-md flex flex-row overflow-x-auto bg-zinc-800 w-auto">
+
+    <a class="lg:ml-12 ml-4 lg:my-4 my-7 transition ease-in-out duration-700 hover:text-gray-300" onclick="showContent('adventure')">BMW</a>
+    <a class="lg:ml-12 ml-4 lg:my-4 my-7 transition ease-in-out duration-700 hover:text-gray-300" onclick="showContent('sport')">KAWASAKI</a>
+    <a class="lg:ml-12 ml-4 lg:my-4 my-7 transition ease-in-out duration-700 hover:text-gray-300" onclick="showContent('heritage')">YAMAHA</a>
+    <a class="lg:ml-12 ml-4 lg:my-4 my-7 transition ease-in-out duration-700 hover:text-gray-300" onclick="showContent('roadster')">HONDA</a>
+    <a class="lg:ml-12 ml-4 lg:my-4 my-7 transition ease-in-out duration-700 hover:text-gray-300" onclick="showContent('urban')">DUCATI</a>
+
+</div>
+
+<div id="adventure" class="content-section p-4">
+  <div id="motos1" class="flex grid-cols-10 overflow-x-auto mx-2">
+      <a class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+          <img width="120" height="80" src="https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000220211025130420_nsc-master-modeloverview-f750gs-P0ND2_600x360.jpg" alt="RUTAAA"/>
+          <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">F 750 GS</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+          <img width="120" height="80" src="https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000220211025131258_nsc-master-modeloverview-f850gs-P0N2L_600x360.jpg" alt="RUTAAA"/>
+          <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">F 850 GS</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000220211025133002_nsc-master-modeloverview-R1250GSADVENTURE-WNA2.jpg" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">R 1250 GS</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000220211025132133_nsc-master-modeloverview-f900xr-P0NA5_600x360.jpg" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">F 900 XR</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000220211025132710_nsc-master-modeloverview-R1250GS-WND2_600x360.jpg" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">R 1250 XR</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://www.inchcapemotors.pe/motorrad/site/artic/20210831/imag/foto_0000004220210831115748_300x180.png" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">G 310 GS</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://www.inchcapemotors.pe/motorrad/site/artic/20240313/imag/foto_0000006720240313050857_300x180.jpg" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">R 1300 GS</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://www.inchcapemotors.pe/motorrad/site/artic/20240509/imag/foto_0000006520240509210709_f800gs_300x180.jpg" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">F 800 GS</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://www.inchcapemotors.pe/motorrad/site/artic/20240509/imag/foto_0000006520240509210933_f900gs_300x180.jpg" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">F 900 GS</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://www.inchcapemotors.pe/motorrad/site/artic/20240510/imag/foto_0000006420240510001909_F_900_ADV_300x180px.png" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">F 900 XR</div>
+      </a>
+  </div>
+  </div>
+
+  <div id="sport" class="content-section" style="display: none;">
+    <div id="motos1" class="flex grid-cols-10 overflow-x-auto mx-2">
+      <a class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+          <img width="120" height="80" src="https://resources-sami3.s3.us-west-1.amazonaws.com/sami3-prod/kawasaki.com.pe/images/productos/ninja-500-abs-f-removebg-preview-%20k2-ex500grfnn%20t112632.webp" alt="RUTAAA"/>
+          <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">Ninja 500</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+          <img width="120" height="80" src="https://resources-sami3.s3.us-west-1.amazonaws.com/sami3-prod/kawasaki.com.pe/images/productos/ninja-e1-abs-f-removebg-preview-%20k2-nx011arfnn%20t11227.webp" alt="RUTAAA"/>
+          <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">Ninja E1</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://resources-sami3.s3.us-west-1.amazonaws.com/sami3-prod/kawasaki.com.pe/images/productos/cafe-1-removebg-preview-K2-EN650ERFNNT13560.png" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">VULCAN S</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://resources-sami3.s3.us-west-1.amazonaws.com/sami3-prod/kawasaki.com.pe/images/productos/4rrabs-1-removebg-preview-K2-ZX400SRFBLT13749.png" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">Ninja ZX-4RR</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://resources-sami3.s3.us-west-1.amazonaws.com/sami3-prod/kawasaki.com.pe/images/productos/image_edit%20%281%29-145950.png" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">Z400 2023</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://resources-sami3.s3.us-west-1.amazonaws.com/sami3-prod/kawasaki.com.pe/images/productos/z-e1-abs-f-removebg-preview-%20k2-nr011arfnn%20t112437.webp" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">ZE1 2023</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://resources-sami3.s3.us-west-1.amazonaws.com/sami3-prod/kawasaki.com.pe/images/productos/650-1-removebg-preview-K2-ER650NRFANT125933.png" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">Z650 2023</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://resources-sami3.s3.us-west-1.amazonaws.com/sami3-prod/kawasaki.com.pe/images/productos/300-1-removebg-preview-K2-KLE300CRFALT135838.png" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">VERSYS 300</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://resources-sami3.s3.us-west-1.amazonaws.com/sami3-prod/kawasaki.com.pe/images/productos/klr-1-removebg-preview-K2-KL650FRFNNT123329.png" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">KLR 650</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://resources-sami3.s3.us-west-1.amazonaws.com/sami3-prod/kawasaki.com.pe/images/productos/ninja-500-abs-se-f-removebg-preview-%20k2-ex500jrfan%20t113028.webp" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">Ninja SE</div>
+      </a>
+  </div>
+  </div>
+
+  <div id="heritage" class="content-section" style="display: none;">
+    <div id="motos1" class="flex grid-cols-10 overflow-x-auto mx-2">
+      <a class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+          <img width="120" height="80" src="https://flux.somosmoto.pe/r/https://somosmoto.pe/images/models/thumbnails/colors/yamaha-yzf-r3-abs-2024-negro-b5a604.png?width=235" alt="RUTAAA"/>
+          <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">YZF-R3</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+          <img width="120" height="80" src="https://flux.somosmoto.pe/r/https://somosmoto.pe/images/models/thumbnails/colors/yamaha-yzf-r15-ver40-2024-azul-cc8cdc.png?width=235" alt="RUTAAA"/>
+          <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">YZF-R15</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://flux.somosmoto.pe/r/https://somosmoto.pe/images/models/thumbnails/colors/yamaha-mt-03-2023-gris-52595b.png?width=235" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">MT-03</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://flux.somosmoto.pe/r/https://somosmoto.pe/images/models/thumbnails/colors/yamaha-fzs-30-abs-2024-gris-a1ca72.png?width=235" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">FZS 3.0</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://flux.somosmoto.pe/r/https://somosmoto.pe/images/models/thumbnails/colors/yamaha-fz25-2022-azul-57d53d.png?width=235" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">FZ25</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://flux.somosmoto.pe/r/https://somosmoto.pe/images/models/thumbnails/colors/yamaha-fz25-abs-2023-negro-4ace4e.png?width=235" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">FZ26</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://flux.somosmoto.pe/r/https://somosmoto.pe/images/models/thumbnails/colors/yamaha-xtz125-2024-azul-67d573.png?width=235" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">XTZ125</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://flux.somosmoto.pe/r/https://somosmoto.pe/images/models/thumbnails/colors/yamaha-ybr125z-2024-negro-52a496.png?width=235" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">YBR125Z</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://flux.somosmoto.pe/r/https://somosmoto.pe/images/models/thumbnails/colors/yamaha-yb125-chacarera-2023-negro-eca0a0.png?width=235" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">YB125</div>
+      </a>
+      <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+        <img width="120" height="80" src="https://flux.somosmoto.pe/r/https://somosmoto.pe/images/models/thumbnails/colors/yamaha-fz-x-connected-2024-negro-81135f.png?width=235" alt="RUTAAA"/>
+        <div class="text-black dark:text-white ml-4 font-semibold lg:text-md text-sm w-20 lg:w-auto">FZ-X</div>
+      </a>
+  </div>
+  </div>
+
+  <div id="roadster" class="content-section" style="display: none;">
+    <div id="motos1" class="flex grid-cols-10 overflow-x-auto mx-2">
+        <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+            <img width="200" height="140" src="https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000220211025131812_nsc-master-modeloverview-f900r-P0N3A_600x360.jpg" alt="Heritage 1"/>
+            <div class="text-gray-800 dark:text-gray-200 ml-6 font-bold lg:text-lg text-sm w-20 lg:w-auto">Heritage GS</div>
+        </a>
+        <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+          <img width="200" height="140" src="https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000220211025122958_nsc-master-modeloverview-g310r-P0N3C.jpg" alt="Heritage 1"/>
+          <div class="text-gray-800 dark:text-gray-200 ml-6 font-bold lg:text-lg text-sm w-20 lg:w-auto">Heritage GS</div>
+        </a>
+    </div>
+  </div>
+  
+  <div id="urban" class="content-section" style="display: none;">
+    <div id="motos1" class="flex grid-cols-10 overflow-x-auto mx-2">
+        <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+            <img width="200" height="140" src="https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000220211025125441_nsc-master-modeloverview-C400X-WN2F_600x360.jpg" alt="Heritage 1"/>
+            <div class="text-gray-800 dark:text-gray-200 ml-6 font-bold lg:text-lg text-sm w-20 lg:w-auto">Heritage GS</div>
+        </a>
+        <a href="#" class="items-center mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+          <img width="200" height="140" src="https://www.inchcapemotors.pe/motorrad/site/artic/20230922/imag/foto_0000003220230922191408_foto_0000000220220608151925_02_Foto_Header_300x180.jpg" alt="Heritage 1"/>
+          <div class="text-gray-800 dark:text-gray-200 ml-12 font-bold lg:text-lg text-sm w-20 lg:w-auto ">Heritage GS</div>
+        </a>
+    </div>
+  </div>
+
+  <div>
+    <div class="flex flex-col-reverse lg:flex-row justify-end mt-10 mx-4 transition-transform duration-500 transform opacity-100 animate-slide-in">
+      <div class="grid grid-cols-1 m-4 mt-8 lg:m-12 w-full lg:w-1/2">
+        <div class="mx-2 flex justify-start lg:mt-4 mt-2 w-96 -mb-8">
+          <p class="text-6xl font-bold dark:text-white">F 750 GS</p>
+        </div>     
+        <div class="mx-2 grid grid-cols-1 lg:grid-cols-2 mt-16 w-96 lg:gap-8 text-white ">
+          <button class="px-4 py-2 bg-zinc-800 font-bold w-80 lg:w-full h-16 hover:bg-blue-700 hover:border-blue-700 transition duration-300 ease-in-out">EQUIPA LA TUYA</button>
+          <button class="px-4 py-2 text-black dark:text-white font-bold w-80 lg:w-full h-16 border border-black dark:border-white border-2 hover:bg-blue-700 hover:border-blue-700 transition duration-300 ease-in-out hover:text-white mt-4 lg:mt-0">DESCUBRELO</button>
+        </div>
+        <div class="flex justify-start gap-4 mt-8 ml-2">
+          <a class="rounded-full bg-black dark:bg-white w-6 h-6 self-start"></a>
+          <a class="rounded-full bg-blue-700 w-6 h-6 self-start"></a>
+        </div>
+      </div>
+      <img class="w-full lg:w-1/2 object-cover" src="https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000002820211025130420_900x500240.png" alt=""/>
+    </div>
+  </div>
+  
+  
+  <div class="text-black dark:text-white font-bold mt-6 grid grid-cols-1 lg:grid-cols-2 content-between transition-colors duration-300">
+    <h2 class="mx-10 lg:text-4xl text-2xl">COMUNIDAD Y NOVEDADES</h2>
+    <div class="grid lg:justify-items-end">
+      <button onclick="window.location.href='tienda.html'"  class="mx-10 text-md lg:ext-lg border border-2 border-black dark:border-white px-4 py-2 hover:bg-blue-700 hover:border-blue-700 transition duration-200 ease-in-out hover:text-white lg:w-96 w-80 mt-4 lg:mt-0">CONOCE TODAS LAS PROMOCIONES</button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2">
+    <section class="bg-cover bg-center my-6 mx-10 h-96" style="background-image: url('https://www.inchcapemotors.pe/motorrad/site/artic/20231004/imag/foto_0000001120231004221250/SLIDER-649X489.jpg');">
+      <div class="bg-black bg-opacity-60 h-full flex items-end px-6 py-4">
+        <div class="text-start text-white">
+          <h1 class="text-4xl font-extrabold">RESEÑAS DE LA RUTA</h1>
+          <p class="mt-2 text-md">Paisajes, atardeceres, historias; cada ruta en el Perú tiene su propio encanto, conoce los secretos de las mejores rutas.</p>
+          <div class="mt-3 mb-6 flex justify-start">
+            <a href="tiendas.html" class="mt-2 hover:bg-blue-700 text-white font-bold py-3 px-6 border border-white border-2 hover:border-blue-700 transition duration-200 ease-in-out">CONOCE MAS</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="bg-cover bg-center my-6 mx-10 h-96" style="background-image: url('https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000220211025162342/img_648x500.jpg');">
+      <div class="bg-black bg-opacity-60 h-full flex items-end px-6 py-4">
+        <div class="text-start text-white">
+          <h1 class="text-4xl font-extrabold">TOUR POR EL PAIS</h1>
+          <p class="mt-2 text-md">Aventura y libertad sobre dos ruedas.</p>
+          <div class="mt-3 mb-6 flex justify-start">
+            <a href="tiendas.html"  class="mt-2 hover:bg-blue-700 text-white font-bold py-3 px-6 border border-white border-2 hover:border-blue-700 transition duration-200 ease-in-out">CONOCE MAS</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="flex items-center justify-center my-6">
+    <div class="flex-grow border-t border-2 border-black dark:border-gray-600 ml-36 transition-colors duration-300"></div>
+    <div class="mx-4">
+      <img width="40" height="40" src="data:image/png;base64,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" alt="motocross-helmet"/>
+    </div>
+    <div class="flex-grow border-t border-2 border-black dark:border-gray-600 mr-36 transition-colors duration-300"></div>
+  </div>
+  <h2 class="text-center font-bold text-4xl dark:text-white">MAKE LIFE A RIDE</h2>
+  </div>
+
+  <div class="flex justify-center items-center mt-10 px-4">
+    <div class="w-full max-w-4xl">
+        <div class="relative" style="padding-bottom: 56.25%; /* 16:9 aspect ratio */">
+            <iframe class="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/j8VJXb2LoMM" 
+                    title="#MakeLifeARide — Welcome to BMW Motorrad on YouTube" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</div>
+
+
+</div>
+<div class="text-black dark:text-white font-bold lg:mt-36 mt-8 grid grid-cols-1 lg:grid-cols-2 content-between transition-colors duration-300">
+  <h2 class="mx-10 lg:text-4xl text-2xl">Actividades & Eventos</h2>
+  <div class="grid lg:justify-items-end">
+    <button  onclick="window.location.href='tiendas.html'" class="mx-10 text-md lg:ext-lg border border-2 border-black dark:border-white px-4 py-2 hover:bg-blue-700 hover:border-blue-700 transition duration-200 ease-in-out hover:text-white lg:w-96 w-80 mt-4 lg:mt-0">CONOCE TODOS LOS EVENTOS</button>
+  </div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2">
+  <section class="bg-cover bg-center my-6 mx-10 h-96" style="background-image: url('https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000320211025163847/evento-img_649x325.jpg');">
+    <div class="bg-black bg-opacity-60 h-full flex items-end px-6 py-4">
+      <div class="text-start text-white">
+        <h1 class="text-4xl font-extrabold">RESEÑAS DE LA RUTA</h1>
+        <p class="mt-2 text-md">Paisajes, atardeceres, historias; cada ruta en el Perú tiene su propio encanto, conoce los secretos de las mejores rutas.</p>
+        <div class="mt-3 mb-6 flex justify-start">
+          <a href="tiendas.html" class="mt-2 hover:bg-blue-700 text-white font-bold py-3 px-6 border border-white border-2 hover:border-blue-700 transition duration-200 ease-in-out">CONOCE MAS</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-cover bg-center my-6 mx-10 h-96" style="background-image: url('https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000320211025164406/PREQUALIFER-banner.jpg');">
+    <div class="bg-black bg-opacity-60 h-full w-full flex items-end px-6 py-4">
+      <div class="text-start text-white">
+        <h1 class="text-4xl font-extrabold">TOUR POR EL PAIS</h1>
+        <p class="mt-2 text-md">Aventura y libertad sobre dos ruedas.</p>
+        <div class="mt-3 mb-6 flex justify-start">
+          <a href="tiendas.html" class="mt-2 hover:bg-blue-700 text-white font-bold py-3 px-6 border border-white border-2 hover:border-blue-700 transition duration-200 ease-in-out">CONOCE MAS</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="flex items-center justify-center my-6">
+  <div class="flex-grow border-t border-2 border-black dark:border-gray-600 ml-36 transition-colors duration-300"></div>
+  <div class="mx-4">
+    <img width="40" height="40" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAkFBMVEUAAAD////8/PwEBAT4+PhsbGzHx8etra3q6ure3t7n5+cICAjz8/PZ2dnv7+/d3d2AgICamppCQkLS0tJwcHDGxsaGhoZVVVVkZGRfX19mZmaSkpKlpaVvb28kJCRMTEx5eXkzMzO5ubmpqakbGxswMDC2trYmJiYYGBhFRUWLi4uUlJQ7OzsyMjJYWFgSEhIez8MkAAAOUUlEQVR4nN2dC3uiOhCGSUJVEC9I1VqtUm1ta932//+7zQWURBISDQT7ned0d1sLeZlJJpdJ8IB1Qfzf+R9+r7PfrQ4v8+Pxff352/98+/h3/Hoax6vuNoj8/Ffqk2f/kpCV1w873+ni3VPqd/M42wfD7BftlwXUQogVbGfzfzkF4pjYvxD3zbevh13i11KSOgjD7uOb2nASfcUd64UB1ggh882ok14Fd9LPKqSXs+iwFm0YTV/ezn54hZjrTg6J1QppjXD6nPvmlYSIEDLIj9nAVrFsEQ6/r7WbTOu4B4i33u6vtxKSAgxSZgPLWnR8GxXydhtO57bRTjpSQzom3JOQjqzb76TH0B0h8Z/Oa21oJz0Ep2DUMCEAo6fa8RBxj4fBLRHyesJhigvQb4LQ856Dq4t5BWHWgsc1swkaR/TezRASjxkcG+UjhozhdeHxGkIAY9oFaZIQV4f3KT/0rImQ3GE0aY6tSOk9DI35jAmJmzRcAzl1zVtVU0IQbmrooGkK33czMnVUUy+derV2YaoRiRlrI4SNx4hSLSIjTzUghMB/cOehBfWnJp5qYsPwNe9jOBUuQWxQal1CyKpgK4QRn/WNqEkIfbDzWuGimd5HupVR20tJG9MeQKypZjdVl/DQiip4Fi7LTg9RixCCsWuiMh20Ojg6hBA8u4Yp17MOohbhT7tqYCZca+Yawb+SEF9g3kpAOn6bRxBUVEcNGy5co6g0gSSS3Ub46BpCJeQdo4oWtZLw4NU923SLcF2cRGoAJaHj4a6mNkBZEytsuHNdfB3Nr7ch2LouvIawoz5eTThwXXodkd7k4SpCH0RvDicszESmNiR1UU4IocM5J2Ml0sZGSgjBzEP3YkNcytDQhvjT3fsxYBb5TQjJysQduSjVk8SIEkIwXN+Lh560MrIhHhG2a0xfKURaG01CskBzV5WQCXlrv8xRy2wIQe/eKiERImN+PRtCsLm7SsgKvNf10tUdmpAVuAcvFlHLvDRwXNirhbyfy85bmQ2dLPHaEPbUy0nUEsLv+3PRXMjrX/TeREIIe66LeZtS0WACIeZ/usNmpigxlfqCsNNsHol9vVfVw2ZTgepQzM+Di4R3MfWkEvY/fgZVIBy6LuDNwoRjzogCYeq6gDeLtCFcJmOREN7H5Fq1HuWELV0nNNZAQggS1yWzpR8Z4YvrktkR7p4G58amSHi3Y4pLPZw74EXCh/vuzJyFSHNaQhje38BeJoQ74CIhdts/UgsznXbrnAj/Ui0kikVCspz9h4S8t4t6GH24LpVl5UmoJ8LtX2lImZA3z0LiibC+PXauFPBeGtz53IUoDLMEZxtCthz6x/RatCGEf8yEVMmZEIL9XyRMi4Qb16WpQ+vo7KW9v2dA4pTJmfAecp+MlSUSedm46Q8K99xOhFHDCZaoT2vFcfH8vJgIB6Egm21ekBNOm29I18tkSHN7YdQLtvHs2f6+d8SmvynhuGnCr202ZDt/BcAfbHez+drqfagN8Q1sXlQp9iDfEyCcJsWpl0xX6c+kZKxj7sE+89LmJhHpstZY77ykKBxN4/HL15kJmRN2MGGz2yZxAbdm21yhH422q8PiOu/FFZHYsLkODU1c0tpzBrk/qPxkuxvP340OoZozwiabmbKMFzPBgNTTxUYwarkHr4ekHjY5ly/JrjMBzP8ShcE0nj1UrOgGpB7um4Ej2lg5dQ5yUQZGo/3qMJc4757Y0KTLdkvCIjcTfSNj2TeHuJ6m8yMfZcaEUHflviSDwQQXP5uxFbwK+cFgGqcPm1961w0mDLWLSL7Ml7tO0OuFyfbbfEPUsN4zILmLw2g4Ir3ByKPpJZpKO3wBR7FRlEqBmFdn4bAyEZLdonBdTyPeI3qW0HFX1hdJnvQrZzGXBxchWpJTtD5+xsspV8ashLbgPZBWF40Q7P3LriT9RrLRPCnjbcj9evLp5RX5ib/o6RlYIqzeQIkN+DgsfazsW10NPE/cgBXQJ4do8/VQ/EH0vNp3bj7DrEAIK85QpfbZqpuI3lGnWeVb0uIcO0foZ9/cjONuEvm3nyrolxWmoH7f+6h4otiSL+RzFeIOs+CWY0sJMx0X6XI/CPLlQOZJRmebVCVbIu/Yq7gipBv2Kwm5Luleg7C4KentOH+Mt53A/KRar2IGA5HOa9UTIw8grQL0uDNXuro2FEeFn19pvO8YHBjlqVL1aBjQO5wRgqeqqMElfnKtk5JQos/5+Lub9CJ4LgF50PAyC1oVDkmBp0BHONBGrxVBwy5hruPicblN8uOkS05Y9GaqXyeTqnoDVr86Kc4qYea653r6uiH1tKRN9FLlZY76Z8BBsGyQUF7mr3SFo8zZLp46WY/raLE+TNg9jNPZauSL3UoI1BMMzRDmel+Mv/eDsAc95ep2MQOOMoD9aVLnuBSO3agaSzdGWGx8PyfeRBUtxN21A7rZBGWNZn/Hj1cgVOZzNEmY/UH/Ju204Z8eBQte2OhR8NSdqjlt1kvPUo3weBtd9rD73oIPP8pdfa4I+4oy8T2HzsXPscFm/ENYtJBQ+tSR0M5E65KPIr4vphxIuSOUalm4LwSSY9ffucegivqtI0T8zmHpjbccoiIkto5Q2LYgPVOQm4IAioXO9hG+cQ1NKv0c19Qo0nDbR/jKjTYlcRPxmxuAoiPfPsIJ536SNhcJJVcMxtpHuBEIS4UQP4JUhIv2Ef59G/7j6uE/6edGxY8pssXbR/j321KteIiEeKhYqmshYbFPA31Zl5pfVvmUX66FhIV+qfz0vVfOhHfWL+XHFv5Fl5OOdjv3PLYQxofJxQAe//MuxocSsbOIpaUiYmP8AmIrx/hSYYO9coAl8zSpMKG4U01rtY6QiBshYpQRDQYnCmEep2KuTejd6a7M1Cvh3EzMs/3Kf/ax9M3mS7mhcltsyHsWW9cJ9of0cbair/AT1jTUc95crZ4Wa6xLwqNyeZv30ap1i2/u08WfuCTUXXvKziFUiuPAHYh22FCM6ArC6L1i/fDIX6iQA+KWUHMNmJS4X5GPwS3uQXgeaDkm/IgqXyQFgQ/S6iuJyaUjsrKHxHyaxgkRSTapAgRaL0/4uvjNEVu9dEyIvLfRRdEEQviglfglHE5J2rAByW517KU0qU2N2NNMURWNSJvpwTN/omPzhDSvLY3AReokyN8UqJnX5pGOW1kW14DLlnJByF6V5V+mC7LcxImnnSz8W5Z9JHzHBSFb1f63KzuLuLMwSv5elFxCeKthDSuk2vpNp8KyflyV2CgIsTxhpawTGh4WMTmspkkYDjr7+IpDpVg2uxrROqEyF4Mv3mV1M92bQD7+VJF1Z53Q7D1HN28gIhke4tmNNRN2m96Jj+jbNnHrUp4qCuGP5Rs2ffAOe5yznqw64oYosHtsHGj6TN0so2omSa3O+zn2RA5+dqNxD8j3lIxIf9XOyVxg+GvjMleJ+qosdgS23jPl7t2ixEBj2TYAAm6pPuK+pZMTovLoKqmPzLSJjcMe8KUSt0e3jBWxA4xu91XytFaOD6chviqpjhZiB53mdXdWW7ZrRBo7yJfB0023YFc6sHs5NCVrVyUt64Ds5ry2dFm1puN0t746G9YTO06X0N1GWJPqix1nf98aDmdtqs7YUbzOlm41cPsKHRY7JM7K5pANr1gkxK5Ah4uOY4d03EFix5Nx+ThfwBeOul/Vv1SfkKo+UtMatzklF0po21xD8fU1C8s22mX/NowdZa4AhjEZcDiFHKteL0r7crrFk11kansywUiZr0qro0nsKL8AUbC0eiqVmaiBDlZih8IXQMQyLxxGD9yullTHTCM9RhUhuYrrt6rP5DvJIRjpxA4VHr20v3P3/icWOyTr7Lqxo8KGVDR8OHzDjjp2vHhqO2oA4iv1HL/bWR071ONHLULytByGj9tihwZh7g/hwVX40JhDlrerWoS5Ijr6QMjR8IPZUWJKUh9LS2XAxyZNUvprjhod+XoHKO3LIa9vQAizgRtcOXqvl0bsENsc5B3NvDR/fonLd2FIYgeTEDuQdzAkPKkXK3ZW1K3xEMiddcS3q+F1hDR+TB29bCDzVXnsKDJ2Fe9Wr4Qk4cPoqE1riDR2qOrjaf1xD/yrCZmi/dzZ1BWuj1A6aRUsf74W3+Qp3ERYDB8uNFYeUwjZ/zcS0icIuy7W55SxI8/Cw19v9NJcnbzT1Li/Zn0AuSktEeLw8b323EwHKOZXLRLSCu8kfGTtagM2pApnzYcPtt4hz7e3SwiA33X0MpBZKJxbWhMhacFchQ9J7LBtQzZ5tZLvba9F6NSXq50Q5l86bB2s6aa1pD7atuFZ4bLsUKLmGesjxLacshXXZhGFTR31EbJeUzhrOmvuKO53qNOGVBE9pa85Oy4vTvesGZC0rUnaGJ9wDkkjhPSRRqumRh+TixLU7qW5Ovk0WI0Oi/v9XVeEdM4j/siKURuhcJRMo4T0zv623k4r4g7Ra5jwtPYxq/X9YCW7VRqrhydFXbb2UQdg2Qs0mifErSsLH/YZ+70GxhbVgJCFjzqmzEvf09O8DXNl4cOiJV9L7+OMkKzcLj/sVUh8nUHpjdzZkDBGW4uTV5J3STklpEt+thJ2FpL5NoeEuWA3y7y6wV+RN/HbSwhuz/dE3ronW6NpASEt2vDG8BFKd8G1gDBX57oNB8S714F8Yr9FhGTF9d0z9tY+8l5VZ5O0h5A2rf414WPuy3eitIkwP3fDOHzEp4XMUrWI8CS4Jwk7qHo+mcSX16TiCIM2EoJs8qoCkQbQuHw5pqBWEpISD3Xey5eG8r3SuVpJmLldp6LVSXugwkOJ2kmYK4zZBp7zW0dOf2y6moeQtZmQJf98X2YAo5cVOeNY7z1GrSbMp+gG+1U6eV3//q6Pm3S1pS9f0zonj+g/voW1vtadjrcAAAAASUVORK5CYII=" alt="motocross-helmet"/>
+  </div>
+  <div class="flex-grow border-t border-2 border-black dark:border-gray-600 mr-36 transition-colors duration-300"></div>
+</div>
+<h2 class="text-center font-bold text-4xl dark:text-white">RIDER EQUIPMENT</h2>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 justify-items-center">
+  <div class="h-96 m-12">
+   <img src="https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000120211025165221/cascos-race.jpg">
+   <h1 class="text-lg font-bold mt-4 ml-4 dark:text-white">Casco Race</h1>
+   <p class="ml-4 text-sm w-72 dark:text-gray-300">Con este casco con una pantalla extra grande, puedes concentrarte completamente en la pista y reaccionar con rapidez</p>
+   <button  onclick="window.location.href='equipo.html'" class="border text-black dark:text-white border-black dark:border-white border-2 p-4 font-bold my-4 w-48 ml-4 hover:bg-blue-700 hover:text-white font-bold hover:border-blue-700 transition duration-200 ease-in-out">VER COLECCION</button>
+  </div>
+  <div class="h-96 m-12">
+    <img src="https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000120211025165305/botas-prorace.jpg">
+    <h1 class="text-lg font-bold mt-4 ml-4 dark:text-white">Botas Racer</h1>
+    <p class="ml-4 text-sm w-72 dark:text-gray-300">Con estas botas reforzadas, disfrutarás de una protección total sin comprometer la comodidad.</p>
+    <button onclick="window.location.href='equipo.html'"class="border text-black dark:text-white border-black dark:border-white border-2 p-4 font-bold my-4 w-48 ml-4 hover:bg-blue-700 hover:text-white font-bold hover:border-blue-700 transition duration-200 ease-in-out">VER COLECCION</button>
+  </div>
+  <div class="h-96 m-12">
+    <img src="https://www.inchcapemotors.pe/motorrad/site/artic/20211025/imag/foto_0000000120211025164734/guantes-prorace.jpg">
+    <h1 class="text-lg font-bold mt-4 ml-4 dark:text-white">TRAJE SUPREMO</h1>
+    <p class="ml-4 text-sm w-72 dark:text-gray-300"> Este traje aerodinámico se adapta perfectamente a tu cuerpo, ofreciendo libertad de movimiento y máxima seguridad.</p>
+   <button onclick="window.location.href='equipo.html'" class="border text-black dark:text-white border-black dark:border-white border-2 p-4 font-bold my-4 w-48 ml-4 hover:bg-blue-700 hover:text-white font-bold hover:border-blue-700 transition duration-200 ease-in-out">VER COLECCION</button>
+  </div>
+  </div>
+  
+  </div>
+</div>
+<div class="h-16 bg-zinc-800 mt-24"></div>
+
+  <footer class="bg-white dark:bg-gray-800 py-8 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="https://www.facebook.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-blue-500">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="https://www.facebook.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-blue-500">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.675 0H1.325C.593 0 0 .593 0 1.326v21.348C0 23.407.593 24 1.325 24h11.495V14.708h-3.13v-3.629h3.13V8.041c0-3.1 1.893-4.788 4.656-4.788 1.324 0 2.463.098 2.794.143v3.24l-1.917.001c-1.504 0-1.795.715-1.795 1.764v2.311h3.59l-.468 3.629h-3.122V24h6.117C23.407 24 24 23.407 24 22.675V1.326C24 .593 23.407 0 22.675 0z"/>
+          </svg>
+        </a>
+        <a href="https://www.twitter.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-blue-400">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.954 4.569c-.885.392-1.83.656-2.825.775 1.014-.609 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.897-.956-2.178-1.555-3.594-1.555-2.72 0-4.924 2.204-4.924 4.924 0 .39.043.765.127 1.124-4.09-.205-7.719-2.165-10.148-5.144-.423.728-.666 1.574-.666 2.476 0 1.71.871 3.213 2.19 4.096-.807-.026-1.566-.247-2.229-.616v.062c0 2.385 1.693 4.374 3.946 4.827-.413.111-.848.171-1.296.171-.317 0-.626-.03-.928-.087.626 1.956 2.444 3.379 4.597 3.419-1.683 1.319-3.809 2.105-6.115 2.105-.398 0-.79-.023-1.175-.069 2.181 1.399 4.768 2.215 7.548 2.215 9.054 0 14-7.498 14-13.986 0-.21 0-.423-.015-.632.962-.695 1.797-1.562 2.457-2.549z"/>
+          </svg>
+        </a>
+        <a href="https://www.instagram.com" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-pink-600">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.333 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.267.069 1.646.069 4.851 0 3.205-.012 3.585-.07 4.851-.062 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.267.058-1.646.069-4.851.069-3.205 0-3.585-.012-4.851-.07-1.366-.062-2.633-.333-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608-.058-1.267-.069-1.646-.069-4.851 0-3.205.012-3.585.07-4.851.062-1.366.333-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308 1.267-.058 1.646-.069 4.851-.069M12 0C8.741 0 8.332.015 7.052.072 5.769.13 4.632.357 3.678 1.31 2.725 2.263 2.498 3.4 2.44 4.683.183 4.983.168 8.332.168 12s.015 7.017.072 7.748c.06 1.283.288 2.42 1.242 3.374.953.953 2.09 1.181 3.374 1.242 1.284.058 1.694.072 4.948.072 3.255 0 3.665-.014 4.948-.072 1.283-.06 2.42-.288 3.374-1.242.953-.953 1.181-2.09 1.242-3.374.058-1.284.072-1.694.072-4.948 0-3.255-.014-3.665-.072-4.948-.06-1.283-.288-2.42-1.242-3.374-.953-.953-2.09-1.181-3.374-1.242C15.667.014 15.257 0 12 0zm0 5.838A6.162 6.162 0 105.838 12 6.162 6.162 0 0012 5.838zm0 10.163A4.002 4.002 0 1116 12a4.002 4.002 0 01-4 4.002zm6.406-10.845a1.44 1.44 0 11-1.44-1.44 1.44 1.44 0 011.44 1.44z"/>
+          </svg>
+        </a>
+      </div>
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Política de Privacidad</a>
+        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Términos de Servicio</a>
+        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Mapa del Sitio</a>
+    </div>
+      <p class="text-gray-600 dark:text-gray-300">&copy; 2024 MotorStore. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  
+  <script>
+    // Función para alternar el modo oscuro
+    function toggleDarkMode() {
+        const html = document.documentElement;
+        html.classList.toggle('dark');
+        
+        // Guardar preferencia en localStorage
+        if (html.classList.contains('dark')) {
+            localStorage.setItem('darkMode', 'enabled');
+            document.getElementById('sunIcon').classList.add('hidden');
+            document.getElementById('moonIcon').classList.remove('hidden');
+        } else {
+            localStorage.setItem('darkMode', 'disabled');
+            document.getElementById('sunIcon').classList.remove('hidden');
+            document.getElementById('moonIcon').classList.add('hidden');
+        }
+    }
+    
+    // Verificar preferencia guardada al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        const darkModeEnabled = localStorage.getItem('darkMode') === 'enabled';
+        if (darkModeEnabled) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('sunIcon').classList.add('hidden');
+            document.getElementById('moonIcon').classList.remove('hidden');
+        } else {
+            document.getElementById('sunIcon').classList.remove('hidden');
+            document.getElementById('moonIcon').classList.add('hidden');
+        }
+        
+        // Asignar evento al botón
+        document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
+    });
+
+    function openMenu() {
+    const menu = document.getElementById("menu");
+
+    if (menu.classList.contains("hidden")) {
+        menu.classList.remove("hidden");
+        menu.classList.add("z-40", "fixed", "bg-white", "dark:bg-gray-800", "w-full", "top-full", "transition-transform", "duration-700", "transform", "animate-slide-in");
+        document.body.classList.add("overflow-hidden");
+    } else {
+        menu.classList.add("animate-slide-out");
+        menu.classList.remove("animate-slide-in");
+
+        menu.addEventListener("animationend", () => {
+            menu.classList.add("hidden");
+            menu.classList.remove("z-40", "fixed", "animate-slide-out");
+            document.body.classList.remove("overflow-hidden");
+        }, { once: true });
+    }
+}
+
+  function showContent(category) {
+    var sections = document.querySelectorAll('.content-section');
+    sections.forEach(function(section) {
+        section.style.display = 'none';
+    });
+ 
+    var selectedSection = document.getElementById(category);
+    if (selectedSection) {
+        selectedSection.style.display = 'block';
+    }
+}
+
+  const contenido1 = document.getElementById('contenido1');
+const contenido2 = document.getElementById('contenido2');
+const contenido3 = document.getElementById('contenido3');
+
+
+document.getElementById('next').addEventListener('click', () => {
+    contenido1.classList.add('hidden');  
+    contenido2.classList.remove('hidden');
+    contenido3.classList.add('hidden'); 
+});
+
+document.getElementById('prev2').addEventListener('click', () => {
+    contenido2.classList.add('hidden');
+    contenido1.classList.remove('hidden');
+    contenido3.classList.add('hidden'); 
+});
+
+document.getElementById('next2').addEventListener('click', () => {
+    contenido2.classList.add('hidden');
+    contenido3.classList.remove('hidden');
+});
+
+document.getElementById('prev3').addEventListener('click', () => {
+    contenido3.classList.add('hidden');
+    contenido2.classList.remove('hidden');
+});
+
+document.getElementById('next3').addEventListener('click', () => {
+    contenido3.classList.add('hidden');
+    contenido1.classList.remove('hidden');
+});
+
+document.getElementById('prev').addEventListener('click', () => {
+    contenido1.classList.add('hidden');
+    contenido3.classList.remove('hidden');
+});
+  
+const adventureSection = document.getElementById('adventure');
+const sportSection = document.getElementById('sport');
+    
+    function showAdventure() {
+        sportSection.classList.add('animate-slide-out');
+        adventureSection.style.display = 'block';
+        adventureSection.classList.add('animate-slide-in');
+        sportSection.style.display = 'none';
+
+        setTimeout(() => {
+            sportSection.classList.remove('animate-slide-out');
+            adventureSection.classList.remove('animate-slide-in');
+        }, 500);
+    }
+
+    function showSport() {
+        adventureSection.classList.add('animate-slide-out');
+        sportSection.style.display = 'block';
+        sportSection.classList.add('animate-slide-in');
+        adventureSection.style.display = 'none';
+
+        setTimeout(() => {
+            adventureSection.classList.remove('animate-slide-out');
+            sportSection.classList.remove('animate-slide-in');
+        }, 500);
+    }
+   
+  </script>
+
+<style>
+  .animate-slide-out {
+      animation: slide-out 0.5s forwards;
+  }
+
+  .animate-slide-in {
+      animation: slide-in 0.5s forwards;
+  }
+
+  @keyframes slide-out {
+      0% {
+          opacity: 1;
+          transform: translateX(0);
+      }
+      100% {
+          opacity: 0;
+          transform: translateX(-20px);
+      }
+  }
+
+  @keyframes slide-in {
+      0% {
+          opacity: 0;
+          transform: translateX(20px);
+      }
+      100% {
+          opacity: 1;
+          transform: translateX(0);
+      }
+  }
+</style>
+</body>
+</html>
